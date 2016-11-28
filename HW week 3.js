@@ -3,20 +3,31 @@
 receives a string, alerts it after 5 seconds (the 5 seconds is "hard coded", not a parameter).
 */
 function delayWord(str){
-    var alertn = function(){
+    let alertn = function(){
         console.log(str);
     };
-    setTimeout(alertn,5000); 
+    setTimeout(alertn,100); 
 };
 delayWord("delayed");
 /*
 2. delayWord2(str, seconds):
 receives a string, alerts it after [seconds] seconds. Note that setTimeout gets milliseconds, not seconds, so you must convert it to seconds.
 */
+function delayWord2(str,seconds){
+    let alertn = function(){
+        console.log(str);
+    };
+    setTimeout(alertn,seconds*1000); 
+};
+delayWord2("delayed2",1);
 /*
 3. delay(callback, seconds): 
 receives a callback (function!!) and seconds, and performs the action after [seconds] seconds. This is a "seconds" version for setTimeout (which works in milliseconds..)
 */
+function delay(func,seconds){
+    setTimeout(func,seconds*1000); 
+};
+delayWord2(console.log("delay"),2);
 /*
 4. stewefy(name)
 receives no arguments, will start annoying the user by printing his name to the console each 2 seconds.
