@@ -24,10 +24,13 @@ delayWord2("delayed2",1);
 3. delay(callback, seconds): 
 receives a callback (function!!) and seconds, and performs the action after [seconds] seconds. This is a "seconds" version for setTimeout (which works in milliseconds..)
 */
+let defaultFunction = function(){
+    console.log("delay");
+}
 function delay(func,seconds){
     setTimeout(func,seconds*1000); 
 };
-delayWord2(console.log("delay"),2);
+delay(defaultFunction,2);
 /*
 4. stewefy(name)
 receives no arguments, will start annoying the user by printing his name to the console each 2 seconds.
