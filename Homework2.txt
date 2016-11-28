@@ -1,0 +1,23 @@
+1. Bart simpson:
+   a. write a program that receives something Bart did, and prints it 100 times times prefixed with "I will never [USER INPUT]" for example, for user input of "throw paper airplanes on the teacher" the console will print 100 times "I will never throw paper airplanes on the teacher.".
+  b. move the functionality into a "bartitize" function, that will be called like this:
+bartitize('puke on the floor');
+test it by calling it some times with different output
+c. add another parameter to bartitize, so you can define how many times to repeat the sentence
+d. make the function throw an *error* (google error throwing in JS) when the times to repeat the sentence is less than 10 (cause it misses the point of being a bartitize function..)
+
+
+2. 
+ a. write a program that will get a string from the user and return how many words it contains ( read about the "split" method of strings).
+b. move the functionality of (a) into a function and test it by logging some test values:
+
+countWords('I love peanuts'); // prints 3
+countWords('Bob'); // prints 1
+countWords('What is love? baby do not hurt me'); // prints 8
+c. create a function called "reverse" that takes a sentence, and returns a string of the reversed version of it, *only* by words:
+reverse('Bob is cool') -> 'cool is Bob';
+reverse('Bob is the nicest') -> 'nicest the is Bob';
+
+
+3. 
+Solve 4 codewar exercises. The initial question is something you guys did not learn, so read and google your way into it.
