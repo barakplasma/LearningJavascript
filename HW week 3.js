@@ -42,6 +42,13 @@ Louis
 Louis
 (Each time after 2 seconds)
 */
+function stewefy(params) {
+    let log = function() {
+        console.log(params);
+    }
+    setInterval(log,2000);
+}
+stewefy('Louis');
 /*
 5. Loading
 a. loader():
