@@ -6,7 +6,7 @@ function delayWord(str){
     let alertn = function(){
         console.log(str);
     };
-    setTimeout(alertn,100); 
+    setTimeout(alertn,5000); 
 };
 delayWord("delayed");
 /*
