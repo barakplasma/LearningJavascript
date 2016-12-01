@@ -26,7 +26,7 @@ function howSmallIsEnough(from,to,answer){
     } while(integrate(from,to,x).toFixed(3) != answer.toFixed(3)); //should be 57.6563 but only 10^-3 is important
     return {trapezoidsNeeded : parseFloat(x), integral : integrate(from,to,x)}; //returns the number of trapezoids needed to accurately find the integral, and the calculated integral
 }
-console.assert(howSmallIsEnough(-1.5,3,57.656).trapezoidsNeeded == 525 && howSmallIsEnough(-1.5,3,57.656).integral ==  57.656497959183746,"need to run more to be accurate enough");
+console.assert(howSmallIsEnough(-1.5,3,57.656).trapezoidsNeeded == 525 && howSmallIsEnough(-1.5,3,57.656).integral ==  57.656497959183746,"need to run more to be accurate enough"); //https://www.wolframalpha.com/input/?i=integrate+9*x%5E2-2*x%5E3%2B1+from+-1.5+to+3
 console.time("s");
 console.log(howSmallIsEnough(-1.5,3,57.656));
 console.timeEnd("s");
