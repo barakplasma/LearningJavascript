@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/integration.js",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}"
         },
         {
             "type": "node",
