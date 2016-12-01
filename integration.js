@@ -23,7 +23,10 @@ function howSmallIsEnough(from,to,answer){
     do{ 
          x++;
          //console.log(x,parseFloat(integrate(from,to,x).toFixed(3))); //watch the accuracy change
-    } while(integrate(from,to,x).toFixed(3) != answer); //should be 57.6563 but only 10^-3 is important
+    } while(integrate(from,to,x).toFixed(3) != answer.toFixed(3)); //should be 57.6563 but only 10^-3 is important
     return {trapezoidsNeeded : parseFloat(x), integral : integrate(from,to,x)}; //returns the number of trapezoids needed to accurately find the integral, and the calculated integral
 }
-console.assert(howSmallIsEnough(-1.5,3,'57.656').trapezoidsNeeded == 525 && howSmallIsEnough(-1.5,3,'57.656').integral ==  57.656497959183746,"need to run more to be accurate enough");
+console.assert(howSmallIsEnough(-1.5,3,57.656).trapezoidsNeeded == 525 && howSmallIsEnough(-1.5,3,57.656).integral ==  57.656497959183746,"need to run more to be accurate enough");
+console.time("s");
+console.log(howSmallIsEnough(-1.5,3,57.656));
+console.timeEnd("s");
