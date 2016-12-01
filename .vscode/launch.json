@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/HW week 3.js",
+            "program": "${workspaceRoot}/integration.js",
             "cwd": "${workspaceRoot}",
         },
         {

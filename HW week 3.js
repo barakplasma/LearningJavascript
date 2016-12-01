@@ -107,4 +107,4 @@ function loader3(animationTime,dots){
 
     setInterval(repeat,animationTime);
 }
-//loader3(100,9);
+loader3(10,9);
