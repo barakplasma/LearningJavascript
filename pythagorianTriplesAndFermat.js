@@ -14,7 +14,7 @@ function power(a,b){//a-th power of base
 console.assert(power(2,4)==16);
 console.assert(power(3,4)==Math.pow(4,3),"mod to math.pow failed");
 function pythag(a,b,c,n){
-    return power(n,a)+power(n,b)==power(n,c); //returns true if triple
+    return power(n,a)+power(n,b)==power(n,c);//returns true if triple
 }
 console.assert(pythag(3,4,5,2)==true);
 function fermat(n,max){
