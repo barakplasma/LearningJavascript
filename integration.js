@@ -7,13 +7,11 @@ function trapezoid(x,deltax){
 }
 console.assert(trapezoid(2,.1)==2.1584,"integrate section wrong");
 function integrate(from,to,sections){ //loops over each section of the curve and returns the area of all the trapezoids
-    var  out = 0;
-    //let from = -1.5;
-    //let to = 3;
+    var out = 0;
     let sect = (to-from)/sections;
     for(let i = from;i<to;i+=sect){
-        //console.log(i,sect,trapezoid(i,sect)); //see inside function
         out += trapezoid(i,sect);
+        //console.log(i,sect,out); //see inside function
     }
     return out; //area of all the trapezoids
 }

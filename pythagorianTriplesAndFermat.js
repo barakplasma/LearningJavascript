@@ -1,13 +1,18 @@
 function gcd(a,b){  // http://en.wikipedia.org/wiki/Euclidean_algorithm
   var r;
   while (b != 0) {
+    //console.log("a and b:",a,b);
     r = a % b;
+    //console.log("r",r);
     a = b;
     b = r;
+    //console.log("r,a,b",r,a,b);
   }
   return (a < 0) ? -a : a;
 }//https://github.com/josdejong/mathjs/blob/master/lib/function/arithmetic/gcd.js
 console.assert(gcd(16,12)==4)
+//console.log(gcd(50,80));
+
 function power(a,b){//a-th power of base 
     return Math.pow(b,a);
 }
