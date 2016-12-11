@@ -15,7 +15,23 @@
             "type": "node",
             "request": "attach",
             "name": "Attach to Process",
-            "port": 5858
+            "port": 8080
         }
+        {
+
+            "name": "Launch localhost with sourcemaps",
+
+            "type": "chrome",
+
+            "request": "launch",
+
+            "url": "http://localhost:8080/index.html",
+
+            "sourceMaps": true,
+
+            "webRoot": "."
+
+        },
+
     ]
 }
