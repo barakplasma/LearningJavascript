@@ -1,0 +1,66 @@
+<html>
+<!-- 
+Create "index.html" containing html and css code that will create this thing:
+
+https://sketch.cloud/s/3JJz/all/home/can-t-access-my-email-address-free-step-1
+
+Notes: 
+- non functional, only layout and css
+- for date picker, use <input type="date">
+- At this point you are somewhat familiar with 
+-css code inside a <style> tag, not another file
+- breaking tasks in to mini-tasks, which is, IMO, a crucial skill. 
+Break the task into mini-tasks, and complete them 1 by 1
+ -->
+<style>
+body {
+    background-color: #f5f5f5;
+}
+h1  {
+    color: black; 
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+}
+p   {
+    color: black;
+    font-family: Times;
+}
+div.section {
+    background-color: white;
+    margin: 20px;
+}
+form  { display: table;}
+p     { display: table-row;  }
+input { display: table-row;}
+.button {
+    background-color: LightBlue;
+}
+</style>
+<head>
+</head>
+<body>
+<h1>I can't access my Wix Account</h3>
+<div id="header" class="section">
+<p>I can't access my email address and I never upgraded any of my sites</p>
+</div>
+<div id="form-input" class="section">
+<section>
+<form>
+<p>Please enter your name</p>
+    <input type="text">
+<p>Please enter your email</p>
+    <input type="email">
+<p>Please enter the free URL of all sites for which you want to verify ownership</p>
+    <textarea>
+    </textarea>
+<!-- <input type="url"> would be nice too -->
+<p>When was your site last edited?</p>
+    <input type="date">
+<p>A scan of your government issued ID that matches the domain registrant's name</p>
+    <input type="file" name="pic" accept="image/*">
+<br>    
+    <input class="button" style="float: right; color: white;" type="submit">
+</form>
+</section>
+</div>
+</body>
+</html>
