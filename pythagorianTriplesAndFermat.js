@@ -28,24 +28,26 @@ function fermat(n,max){
     console.time("triploop");//this is the horribly inefficient triple loop
     for(var a=1;a<max;a++){
         for(var b=a+1;b<max;b++){
-            for(var c=b+1;c<max;c++){
-                print(a,b,c,n);
-                runs++;
+            if(gcd(a,b)==1){
+                for(var c=b+1;c<max;c++){
+                    print(a,b,c,n);
+                    runs++;
+                }
             }
         }
     }
     function print(a,b,c,n){
         if(pythag(a,b,c,n)){
-            if(gcd(a,b)==1&&a<b){
+            
             console.log(`${a}^${n}+${b}^${n}=${c}^${n}`) //print the triple
             console.log(`${power(n,a)}+${power(n,b)}=${power(n,c)}\n`) //print the triple
-            numTriples++;}
+            numTriples++;
         }
     }
     if(numTriples!=0){return `We checked ${runs} combinations, and found ${numTriples} triples when checking n=${n} & max=${max}`}
     else{return `We found no triples for n=${n}`};
 }
 console.log(`Lets Calculate Pythagorian triples to prove Fermat’s last theorem\n`)
-console.log(fermat(2,10000));//assert to http://www.tsm-resources.com/alists/trip.html
+console.log(fermat(2,100));//assert to http://www.tsm-resources.com/alists/trip.html
 console.log("done");
 console.timeEnd("triploop");
