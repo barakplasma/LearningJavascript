@@ -48,6 +48,6 @@ function fermat(n,max){
     else{return `We found no triples for n=${n}`};
 }
 console.log(`Lets Calculate Pythagorian triples to prove Fermat’s last theorem\n`)
-console.log(fermat(2,100));//assert to http://www.tsm-resources.com/alists/trip.html
+console.log(fermat(2,10));//assert to http://www.tsm-resources.com/alists/trip.html
 console.log("done");
 console.timeEnd("triploop");
