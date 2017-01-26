@@ -1,6 +1,7 @@
 {
     "version": "0.1.0",
     "configurations": [
+        
         {
             "name": "Launch localhost with sourcemaps",
             "type": "chrome",
@@ -20,7 +21,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/pythagorianTriplesAndFermat.js",
+            "program": "${workspaceRoot}/dateCompare.js",
             "cwd": "${workspaceRoot}"
         }
     ]
