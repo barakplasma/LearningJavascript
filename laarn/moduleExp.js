@@ -2,11 +2,10 @@ var fs = require('fs');
 var pa = require('path');
 
 module.exports = function (dir,fileExt,callback){
-    var list = fs.readFile(dir);
-    
-    var out //= fs.readFile(dir);
-    //function readDir(list,fileExt){}
-    out = list.filter((file)=>pa.extname(file)==fileExt);
-    
-    callback(null,out);
-}
+    fs.readdir(dir,(err,data)=>{
+        if (err) return callback(err)
+        var out = data.filter((file)=>{return pa.extname(file)=='.'+fileExt});
+        //console.log(`out: ${out}; fileExt: ${fileExt};`);
+        callback(err,out);
+    })
+};
