@@ -10,18 +10,18 @@ var event = {
   "moduleId": "string", // the current Motion AI Module ID
   "inResponseTo": "string", // the Motion AI module that directed the conversation flow to this module
   "reply": "string", // the end-user's reply that led to this module
-  "result": "testthiswix.com"//'g.co' // any extracted data from the prior module, if applicable
+  "result": 'personsphotography.com'//"testthiswix.com"//'g.co' // any extracted data from the prior module, if applicable
 }
 
 // this is the object we will return to Motion AI in the callback
 var responseJSON = {
-  "response": 'internal err getting DNS A records. Please make sure you input a valid domain.', // what the bot will respond with (more is appended below)
+  "response": 'internal err getting DNS records. Please make sure you input a valid domain.', // what the bot will respond with (more is appended below)
   "continue": true, // denotes that Motion AI should hit this module again, rather than continue further in the flow
   "customPayload": "", // working data to examine in future calls to this function to keep track of state
   "quickReplies": null, // a JSON object containing suggested/quick replies to display to the user
   "cards": null // a cards JSON object to display a carousel to the user (see docs)
 }
-
+console.log(`event: ${JSON.stringify(event.result,null,2)}`);
 const dns = require('dns');
 /*
 const http = require('https');
@@ -82,7 +82,7 @@ function checkCNAME(err,cname){
 }
 
 function callback(err, data) {
-  console.log('callback output: ', err, JSON.stringify(data,null,2));
+  //console.log('callback output: ', err, JSON.stringify(data,null,2));
 }
 
 /*
