@@ -1,21 +1,23 @@
 var http = require('http')
 
 var args = process.argv;
+var current = 2;
+var temp = '';
 
-function* urlList(){
-    yield args[2];
-    yield args[3];
-    yield args[4];
-}
-var nu = urlList();
-
-function tryNext(){
-    http.get(nu.next().value,function httpResp(response){
+function tryNext(current){
+    http.get(args[current],function httpResp(response){
         response.on('data', function(data){
-            console.log(data.toString());
+            temp+=data.toString();
+            //console.log(temp)
         });
-        res.on('end', () => {
-            tryNext();
+        response.on('end', () => {
+            if(current<5){
+                current++;
+                console.log(temp);
+                temp='';
+                tryNext(current);
+            };
         });
     });
 }
+tryNext(current);
