@@ -22,18 +22,19 @@ var responseJSON = {
   "cards": null // a cards JSON object to display a carousel to the user (see docs)
 }
 console.log(`event: ${JSON.stringify(event.result,null,2)}`);
-const dns = require('dns');
+var dns = require('dns');
 
 function checkA(err, Arecord) {
-  console.log(`dns.resolve A debug: err:${err} ; resolve input:${Arecord}`);
+  console.log('dns.resolve A debug: err:' + err + ' ; resolve input:' + Arecord);
   if (err !== null) {
     callback(null, responseJSON);
   } else {
-    if(/(216\.139\.213\.144)|(23\.236\.62\.147)|(216\.185\.152\.1((4[4-9])|(5[0-9])))|(104\.197\.84\.185)/.test(Arecord)){ //tests https://regex101.com/r/nm44aQ/1
+    if (/(216\.139\.213\.144)|(23\.236\.62\.147)|(216\.185\.152\.1((4[4-9])|(5[0-9])))|(104\.197\.84\.185)/.test(Arecord)) {
+      //tests https://regex101.com/r/nm44aQ/1
       responseJSON.response = "The domain's A record is set correctly.<br>";
       dns.resolve(event.result, 'NS', checkNS);
     } else {
-      responseJSON.response = `The domain's A record is ${Arecord}.<br>Check what your settings should be <a href="https://domain-troubleshooter.wix.com/ns-widget">here.</a><br>You can read more about how to <a href="https://support.wix.com/en/article/adding-or-updating-a-records-in-your-wix-account">change your A record through Wix</a> if you are using Wix nameservers. If you connected your domain via pointing, you will need to change the domain's A record through your domain registrar. `
+      responseJSON.response = 'The domain\'s A record is ' + Arecord + '.<br>Check what your settings should be <a href="https://domain-troubleshooter.wix.com/ns-widget">here.</a><br>You can read more about how to <a href="https://support.wix.com/en/article/adding-or-updating-a-records-in-your-wix-account">change your A record through Wix</a> if you are using Wix nameservers. If you connected your domain via pointing, you will need to change the domain\'s A record through your domain registrar. ';
       dns.resolve(event.result, 'NS', checkNS);
     }
   }
@@ -42,30 +43,30 @@ function checkA(err, Arecord) {
 dns.resolve(event.result, 'A', checkA);
 
 function checkNS(err, ns) {
-  console.log(`dns.resolve NS debug: err:${err} ; resolve input:${ns}`);
+  console.log('dns.resolve NS debug: err:' + err + ' ; resolve input:' + ns);
   if (err !== null) {
-    responseJSON.response += `!internal error!`;
+    responseJSON.response += '!internal error!';
     dns.resolve(event.result, 'CNAME', checkCNAME);
   } else {
-    let nsRegex = /^ns\d{1,2}\.wixdns\.net/; //match is good; no match means not our NS; test online at https://regex101.com/r/v0CyH3/1
+    var nsRegex = /^ns\d{1,2}\.wixdns\.net/; //match is good; no match means not our NS; test online at https://regex101.com/r/v0CyH3/1
     var nsCheck;
-    nsRegex.test(ns[0])? nsCheck = 'set correctly. <br>' : nsCheck = 'not set correctly. <br>';
-    responseJSON.response += `The domain's NS record is ${nsCheck}`;
-    dns.resolve('www.'+event.result, 'CNAME', checkCNAME);
+    nsRegex.test(ns[0]) ? nsCheck = 'set correctly. <br>' : nsCheck = 'not set correctly. <br>';
+    responseJSON.response += 'The domain\'s NS record is ' + nsCheck;
+    dns.resolve('www.' + event.result, 'CNAME', checkCNAME);
   }
 }
 
-function checkCNAME(err,cname){
-    console.log(`dns.resolve CNAME debug: err:${err} ; resolve input:${cname}`);
+function checkCNAME(err, cname) {
+  console.log('dns.resolve CNAME debug: err:' + err + ' ; resolve input:' + cname);
   if (err !== null) {
-    responseJSON.response += `!internal error!`;
+    responseJSON.response += '!internal error!';
     callback(null, responseJSON);
   } else {
-    let cnameRegex = /^www([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.wixdns\.net/; //match is good; no match means not our CNAME ; Stolen from https://github.com/wix-private/domain-troubleshooter-server/blob/8f3e69f721429744370c59252329df27f3583775/src/it/resources/domain-troubleshooter-server-config.xml 
-    let cnameCheck = '';
-    cnameRegex.test(cname[0])? cnameCheck = 'set correctly. <br>' : cnameCheck = 'not set correctly. <br>';
-    responseJSON.response += `The domain's CNAME record is ${cnameCheck}`;
-    console.log(JSON.stringify(responseJSON,null,2));
+    var cnameRegex = /^www([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.wixdns\.net/; //match is good; no match means not our CNAME ; Stolen from https://github.com/wix-private/domain-troubleshooter-server/blob/8f3e69f721429744370c59252329df27f3583775/src/it/resources/domain-troubleshooter-server-config.xml 
+    var cnameCheck = '';
+    cnameRegex.test(cname[0]) ? cnameCheck = 'set correctly. <br>' : cnameCheck = 'not set correctly. <br>';
+    responseJSON.response += 'The domain\'s CNAME record is ' + cnameCheck;
+    console.log(JSON.stringify(responseJSON, null, 2));
     callback(null, responseJSON);
   }
 }
