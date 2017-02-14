@@ -23,17 +23,6 @@ var responseJSON = {
 }
 console.log(`event: ${JSON.stringify(event.result,null,2)}`);
 const dns = require('dns');
-/*
-const http = require('https');
-function TestcheckOldDomainTS(domain){
-    http.get(`https://domain-troubleshooter.wix.com/_api/wix/getUserDomainIPAddress?domainName=${domain}`,function httpResp(response){
-        response.on('data', function(data){
-             console.log(data.toString());
-        })
-    });
-}
-//checkOldDomainTS(event.result)
-*/
 
 function checkA(err, Arecord) {
   console.log(`dns.resolve A debug: err:${err} ; resolve input:${Arecord}`);
@@ -59,7 +48,7 @@ function checkNS(err, ns) {
     dns.resolve(event.result, 'CNAME', checkCNAME);
   } else {
     let nsRegex = /^ns\d{1,2}\.wixdns\.net/; //match is good; no match means not our NS; test online at https://regex101.com/r/v0CyH3/1
-    let nsCheck = '';
+    var nsCheck;
     nsRegex.test(ns[0])? nsCheck = 'set correctly. <br>' : nsCheck = 'not set correctly. <br>';
     responseJSON.response += `The domain's NS record is ${nsCheck}`;
     dns.resolve('www.'+event.result, 'CNAME', checkCNAME);
@@ -84,30 +73,3 @@ function checkCNAME(err,cname){
 function callback(err, data) {
   //console.log('callback output: ', err, JSON.stringify(data,null,2));
 }
-
-/*
-if (event.customPayload === undefined) {
-    event.customPayload = "notWix.com";
-  }
-  if (event.customPayload == 'true') {
-    responseJSON.response = "Would you like to contact Wix Support for more assistance? (yes/no)";
-    responseJSON.quickReplies = ['yes', 'no'];
-    //console.log(responseJSON);
-    callback(null, responseJSON);
-  } else {
-    dns.resolve(event.customPayload, 'NS', (err, add) => {
-      console.log(`dns.resolve.ns: err:${err} ; add: ${add}`);
-      if (err !== null) {
-        callback(null, responseJSON);
-      } else {
-        responseJSON.response = ['NS:'].concat(add, ` and should be in the form of nsX.wixdns.net where X is a number IF you are connecting to Wix via Name Servers. <br><br>Please review <a href="https://support.wix.com/en/article/wix-name-server-records">this help center article</a> for more help setting your DNS name server records correctly.<br><br>Is your site loading after following the instructions in our article? (If you are connected to Wix via pointing, input 'no' (yes/no)`).join(' ');
-        responseJSON.quickReplies = ['yes', 'no'];
-
-        //responseJSON.quickReplies = [{"quickReplies":"Yes; my site is now loading. Thanks! No; I still get an error message after changing my DNS records"}];
-        console.log(`final response: ${responseJSON}`);
-        callback(null, responseJSON);
-      }
-    })
-  }
-};
-*/
