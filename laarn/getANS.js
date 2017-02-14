@@ -76,12 +76,13 @@ function checkCNAME(err,cname){
     let cnameCheck = '';
     cnameRegex.test(cname[0])? cnameCheck = 'set correctly. <br>' : cnameCheck = 'not set correctly. <br>';
     responseJSON.response += `The domain's CNAME record is ${cnameCheck}`;
+    console.log(JSON.stringify(responseJSON,null,2));
     callback(null, responseJSON);
   }
 }
 
 function callback(err, data) {
-  console.log('callback output: ', err, JSON.stringify(data, 3));
+  console.log('callback output: ', err, JSON.stringify(data,null,2));
 }
 
 /*
