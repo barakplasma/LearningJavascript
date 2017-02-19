@@ -5,10 +5,9 @@ var param = process.argv;
 function sendClock(test){
     let clock = new Date();
     test!=='test'? test = false : clock = Date(2017,2,14,7,29,56);
-    /*console.log(clock.toISOString().substr(0,10));//date portion
-    console.log(clock.toISOString().substr(11,8));//time portion*/
-    //return `${clock.toISOString().substr(0,10)} ${clock.toISOString().substr(11,8)}`;// doesn't work since it's gmt and not local
-    return `${clock.getFullYear()}-${clock.getMonth()%10!==1?clock.getMonth():'0'+clock.getMonth()}-${clock.getDate()%10!==1?clock.getDate():'0'+clock.getDate()} ${clock.getHours()%10!==1?clock.getHours():'0'+clock.getHours()}:${clock.getMinutes()%10!==1?clock.getMinutes():'0'+clock.getMinutes()}`
+    console.log(clock.getMinutes())
+    return `${clock.getFullYear()}-${(clock.getMonth()+1)%10==1?clock.getMonth()+1:'0'+(clock.getMonth()+1)}-${clock.getDate()%10!==1?clock.getDate():'0'+clock.getDate()} ${clock.getHours()%10!==1?clock.getHours():'0'+clock.getHours()}:${clock.getMinutes()%10!==1?clock.getMinutes():clock.getMinutes()}
+`
 }
 //console.log(sendClock('test')); 
 //console.assert(sendTime('test')=='2017-02-14 07:29:56','passed') //test sendTime "YYYY-MM-DD hh:mm"
