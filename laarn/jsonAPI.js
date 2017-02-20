@@ -14,11 +14,13 @@ var server = http.createServer(function (request, res) {
     //console.log(path.pathname) // '/api/parsetime'
     switch (path.pathname) {
         case '/api/parsetime':
-            checkRequest(path.query,parsetime)
+            res.write(handleRequest(path.query,parsetime))
+            res.end()
             break;
 
         case '/api/unixtime':
-            checkRequest(path.query,unixtime)
+            res.write(handleRequest(path.query,unixtime))
+            res.end()
             break;
 
         default:
@@ -28,12 +30,13 @@ var server = http.createServer(function (request, res) {
 })
 server.listen(port) //Your server should listen on the port provided by the first argument to your program.
 
-function checkRequest(time,nextFunction) {
+function handleRequest(time,nextFunction) {
     console.log(time,nextFunction)
-    //if request type get
+    let out
+    out = time; //temp
+    //if request type get (add this logic later)
 
     //parse request
-
     //Expect the request to contain
     //a key 'iso'
     console.assert
@@ -46,11 +49,14 @@ function checkRequest(time,nextFunction) {
     */
     console.assert
 
-    //run child function
-    nextFunction(out)
+    //run child function and callback
+    return nextFunction(out)
 }
 
 function parsetime(time) {
+    console.log(`parsetime: ${time.iso}`)
+    let json
+    json = time;
     //when server receives a GET request to the path '/api/parsetime'
 
     //then serve JSON data like so:
@@ -66,14 +72,20 @@ function parsetime(time) {
            "second": 15
          }
     */
-    JSON.stringify()
+    json = JSON.stringify(time)
     console.assert
+    return json;
 }
 
 function unixtime(time) {
+    console.log(`unixtime: ${time.iso}`)
+    let json;
+    json = time;
     //Add second endpoint for the path '/api/unixtime'
     //accepts the same query string as parsetime
 
     //returns UNIX epoch time in milliseconds (the number of milliseconds since 1 Jan 1970 00:00:00 UTC) under the property 'unixtime'.
+    json = JSON.stringify(time)
     console.assert // example { "unixtime": 1376136615474 }
+    return json;
 }
