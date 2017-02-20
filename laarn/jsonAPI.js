@@ -14,11 +14,11 @@ var server = http.createServer(function (request, res) {
     //console.log(path.pathname) // '/api/parsetime'
     switch (path.pathname) {
         case '/api/parsetime':
-
+            checkRequest(path.query,parsetime)
             break;
 
         case '/api/unixtime':
-
+            checkRequest(path.query,unixtime)
             break;
 
         default:
@@ -28,7 +28,8 @@ var server = http.createServer(function (request, res) {
 })
 server.listen(port) //Your server should listen on the port provided by the first argument to your program.
 
-function checkRequest() {
+function checkRequest(time,nextFunction) {
+    console.log(time,nextFunction)
     //if request type get
 
     //parse request
@@ -44,9 +45,12 @@ function checkRequest() {
     /api/parsetime?iso=2013-08-10T12:10:15.474Z
     */
     console.assert
+
+    //run child function
+    nextFunction(out)
 }
 
-function parsetime() {
+function parsetime(time) {
     //when server receives a GET request to the path '/api/parsetime'
 
     //then serve JSON data like so:
@@ -66,7 +70,7 @@ function parsetime() {
     console.assert
 }
 
-function unixtime() {
+function unixtime(time) {
     //Add second endpoint for the path '/api/unixtime'
     //accepts the same query string as parsetime
 
