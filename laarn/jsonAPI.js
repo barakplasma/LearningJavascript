@@ -69,7 +69,7 @@ function parsetime(time) {
         "second":time.getSeconds()
     }
     json = JSON.stringify(json)
-    console.assert
+    console.assert(Object.keys(JSON.parse(json)).includes('hour'),'converted to JSON incorrectly')
     return json;
 }
 
