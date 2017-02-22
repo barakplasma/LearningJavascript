@@ -36,7 +36,7 @@ var server = http.createServer(function (request, response) {
 
     hrList.length > 0 ? last = hrList.pop() : '';
     //console.log(last)
-
+    
     var page = `
 <script>
 function vote(staff){
@@ -48,6 +48,7 @@ function reset(){
     fetch('http://localhost:3000/reset')
     .then(window.open('http://localhost:3000/view',"_self"))
 }
+
 </script>
 <h1>HR Button</h1>
 <button onclick="vote('Benny')">Benny</button>
