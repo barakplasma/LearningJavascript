@@ -23,7 +23,7 @@ var server = http.createServer(function (request, response) {
         if (api == '/reset') {
             hrList = [];
             last = '';
-            console.log('cleared')
+            //console.log('cleared')
         }
         if (/^\/remove/.test(api)) {
             hrList.splice(hrList.indexOf('api'))
@@ -41,14 +41,25 @@ var server = http.createServer(function (request, response) {
 <script>
 function vote(staff){
     fetch('http://localhost:3000/add/'.concat(staff))
+    .then(console.log('added: ',staff))
     .then(location.reload())
+}
+function reset(){
+    fetch('http://localhost:3000/reset')
+    .then(window.open('http://localhost:3000/view',"_self"))
 }
 </script>
 <h1>HR Button</h1>
-<button onclick="vote('Benny')">Benny</button><button onclick="vote('Dina')">Dina</button><button onclick="vote('Polina')">Polina</button><button onclick="vote('Daniel')">Daniel</button><button onclick="vote('Michael')">Michael</button>
-
-
+<button onclick="vote('Benny')">Benny</button>
+<button onclick="vote('Dina')">Dina</button>
+<button onclick="vote('Polina')">Polina</button>
+<button onclick="vote('Daniel')">Daniel</button>
+<button onclick="vote('Michael')">Michael</button>
+<br>
 ${last !== ''?`${hrList.join(', ')}${hrList.length>0?', and '.concat(last,' have'):last.concat(' has')} an appointment with HR`:''}
+<br>
+<button onclick="reset()">Reset</button>
+<button onclick="location.reload()">Refresh</button>
     `
     if (last !== '') {
         hrList.push(last)
