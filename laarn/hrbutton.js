@@ -27,13 +27,22 @@ var server = http.createServer(function (request, response) {
         if(/^\/remove/.test(api)){
             hrList.splice(hrList.indexOf('api'))
         }
+        if(api=='/view'){
+
+        }
     }
     //console.log(hrList.length)
     
     hrList.length>0?last = hrList.pop():'';
     //console.log(last)
     if(last!==''){
-        response.write(`Reported ${hrList.join(', ')}${hrList.length>0?', and '.concat(last):last} to HR`
+        response.write(
+`
+<script>
+</script>
+HR Button
+<button onclick="">Benny</button>
+${hrList.join(', ')}${hrList.length>0?', and '.concat(last,' have'):last.concat(' has')} an appointment with HR`
         )}
     if(last!==''){
         hrList.push(last)
