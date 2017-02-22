@@ -37,27 +37,25 @@ var server = http.createServer(function (request, response) {
     hrList.length > 0 ? last = hrList.pop() : '';
     //console.log(last)
 
-    var page = `<script>
+    var page = `
+<script>
 function vote(staff){
     fetch('http://localhost:3000/add/'.concat(staff))
     .then(location.reload())
 }
 </script>
 <h1>HR Button</h1>
-<button onclick="vote('benny')">Benny</button>
-`
-    if (last !== '') {
-        page.concat(
-            `
-${hrList.join(', ')}${hrList.length>0?', and '.concat(last,' have'):last.concat(' has')} an appointment with HR`
-        )
-    }
+<button onclick="vote('Benny')">Benny</button><button onclick="vote('Dina')">Dina</button><button onclick="vote('Polina')">Polina</button><button onclick="vote('Daniel')">Daniel</button><button onclick="vote('Michael')">Michael</button>
+
+
+${last !== ''?`${hrList.join(', ')}${hrList.length>0?', and '.concat(last,' have'):last.concat(' has')} an appointment with HR`:''}
+    `
     if (last !== '') {
         hrList.push(last)
     }
-    console.log(hrList)
-    console.log(last)
-    console.log(page)
+    //console.log(hrList)
+    //console.log(last)
+    //console.log(page)
     response.write(page)
     response.end()
 });
