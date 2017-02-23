@@ -6,6 +6,7 @@ var url = require('url')
 var port = 3000
 var hrList = []
 var last = ''
+var nuclearOption = false
 
 //Write an HTTP server
 var server = http.createServer(function (request, response) {
@@ -18,7 +19,18 @@ var server = http.createServer(function (request, response) {
 
     if (api !== '/favicon.ico') {
         if (/^\/add/.test(api)) {
-            hrList.push(api.slice(5))
+            let toAdd = api.slice(5)
+            if(hrList.some((check)=>check==toAdd)){
+                if(hrList.length>4){
+                    hrList = ['Everyone']
+                    nuclearOption = true
+                    setTimeout(()=>{hrList=[];last ='';nuclearOption=false},10000)
+                }
+            }else{
+                
+                hrList.push(toAdd)
+                
+            }
         }
         if (api == '/reset') {
             hrList = [];
@@ -36,7 +48,7 @@ var server = http.createServer(function (request, response) {
 
     hrList.length > 0 ? last = hrList.pop() : '';
     //console.log(last)
-    
+
     var page = `
 <script>
 function vote(staff){
@@ -57,7 +69,7 @@ function reset(){
 <button onclick="vote('Daniel')">Daniel</button>
 <button onclick="vote('Michael')">Michael</button>
 <br>
-${last !== ''?`${hrList.join(', ')}${hrList.length>0?', and '.concat(last,' have'):last.concat(' has')} an appointment with HR`:''}
+${last !== ''?`${hrList.join(', ')}${hrList.length>0?', and '.concat(last,' have'):last.concat(' has')} an appointment with HR. ${nuclearOption?'HR failed so badly, they have been fired. Clearing HR\'s calendar in 10 seconds...':'HR will be with you shortly...'}`:''}
 <br>
 <button onclick="reset()">Reset</button>
 <button onclick="location.reload()">Refresh</button>
