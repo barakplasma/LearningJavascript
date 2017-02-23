@@ -50,6 +50,9 @@ var server = http.createServer(function (request, response) {
     //console.log(last)
 
     var page = `
+<head>
+  <meta http-equiv="refresh" content="5">
+</head>
 <script>
 function vote(staff){
     fetch('http://localhost:3000/add/'.concat(staff))
@@ -63,6 +66,7 @@ function reset(){
 
 </script>
 <h1>HR Button</h1>
+<i>joke site</i>
 <button onclick="vote('Benny')">Benny</button>
 <button onclick="vote('Dina')">Dina</button>
 <button onclick="vote('Polina')">Polina</button>
