@@ -55,18 +55,18 @@ var server = http.createServer(function (request, response) {
 </head>
 <script>
 function vote(staff){
-    fetch('http://localhost:3000/add/'.concat(staff))
+    fetch('/add/'.concat(staff))
     .then(console.log('added: ',staff))
     .then(location.reload())
 }
 function reset(){
-    fetch('http://localhost:3000/reset')
-    .then(window.open('http://localhost:3000/view',"_self"))
+    fetch('/reset')
+    .then(window.open('/view',"_self"))
 }
 
 </script>
 <h1>HR Button</h1>
-<i>joke site</i>
+<i>joke site</i><br>
 <button onclick="vote('Benny')">Benny</button>
 <button onclick="vote('Dina')">Dina</button>
 <button onclick="vote('Polina')">Polina</button>
