@@ -1,3 +1,0 @@
-function getDisplayName(user){
-    return 
-}
