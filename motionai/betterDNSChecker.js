@@ -10,7 +10,7 @@ var event = {
   "moduleId": "string", // the current Motion AI Module ID
   "inResponseTo": "string", // the Motion AI module that directed the conversation flow to this module
   "reply": "string", // the end-user's reply that led to this module
-  "result": 'g.co'//'personsphotography.com'//"testthiswix.com"//'camadem.com'//'goldmedalwaters.com' //  // any extracted data from the prior module, if applicable
+  "result":"testthiswix.com"//'personsphotography.com'//"testthiswix.com"//'camadem.com'//'goldmedalwaters.com' // 'g.co' // any extracted data from the prior module, if applicable
 }
 
 // this is the object we will return to Motion AI in the callback
@@ -55,8 +55,10 @@ function checkNS(err, ns) {
     var nsCheck;
     var nsc = ns.map((n)=>nsRegex.test(n));
     //console.log(nsc);
-    nsc.find((each)=>each===false) ? nsCheck = 'set to the Wix name servers. <br>' : nsCheck = 'not all set to the Wix Name Servers. Unless you intended to connect your domain to Wix via pointing, you should change this using <a href="https://support.wix.com/en/article/wix-name-server-records">these instructions</a>. You can change this at your domain registrar.<br>';
+    nsc.find((each)=>{return each==false})==undefined ? nsCheck = 'set to the Wix name servers. <br>' : nsCheck = 'not all set to the Wix Name Servers. Unless you intended to connect your domain to Wix via pointing, you should change this using <a href="https://support.wix.com/en/article/wix-name-server-records">these instructions</a>. You can change this at your domain registrar.<br>';
     responseJSON.response += '<br>The domain\'s NS records are ' + nsCheck;
+    if(event.result=="g.co")console.assert(nsCheck!=='set to the Wix name servers. <br>','ns failed g.co')
+    if(event.result=="testthiswix.com")console.assert(nsCheck=='set to the Wix name servers. <br>','ns failed wix site')
     dns.resolve('www.' + event.result, 'CNAME', checkCNAME);
   }
 }
@@ -70,10 +72,12 @@ function checkCNAME(err, cname) {
     var cnameRegex = /^www([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.wixdns\.net/; //match is good; no match means not our CNAME ; Stolen from https://github.com/wix-private/domain-troubleshooter-server/blob/8f3e69f721429744370c59252329df27f3583775/src/it/resources/domain-troubleshooter-server-config.xml 
     var cnameCheck = '';
     var cn = cname.map((n)=>cnameRegex.test(n));
-    cn.find((each)=>each===false) ? cnameCheck = 'set correctly. <br>' : cnameCheck = 'not all set correctly. Check <a href="https://support.wix.com/en/article/adding-or-update-cname-records-in-your-wix-account">how to change your cname records with Wix</a> if you connected via name servers. Otherwise, you need to fix this at your domain registrar, not via Wix.<br>';
-    responseJSON.response += '<br>The domain\'s CNAME record is ' + cnameCheck + '<br>Please review <a href="https://support.wix.com/en/article/dns-records-needed-to-connect-your-domain-to-wix">this help center article</a> for more help setting your DNS records correctly.<br>Alternatively, you can check what your settings should be <a href="https://domain-troubleshooter.wix.com/ns-widget">here.</a><br>Is your site loading after following the instructions in our article?';
+    cn.find((each)=>{return each==false})==undefined ? cnameCheck = 'set correctly. <br>' : cnameCheck = 'not all set correctly. Check <a href="https://support.wix.com/en/article/adding-or-update-cname-records-in-your-wix-account">how to change your cname records with Wix</a> if you connected via name servers. Otherwise, you need to fix this at your domain registrar, not via Wix.<br>';
+    responseJSON.response += '<br>The domain\'s CNAME record are ' + cnameCheck + '<br>Please review <a href="https://support.wix.com/en/article/dns-records-needed-to-connect-your-domain-to-wix">this help center article</a> for more help setting your DNS records correctly.<br>Alternatively, you can check what your settings should be <a href="https://domain-troubleshooter.wix.com/ns-widget">here.</a><br>Is your site loading after following the instructions in our article?';
     responseJSON.quickReplies = ['yes', 'no'];
     console.log(JSON.stringify(responseJSON, null, 2));
+    if(event.result=="g.co")console.assert(cnameCheck!=='set correctly. <br>','cname failed g.co')
+    if(event.result=="testthiswix.com")console.assert(cnameCheck=='set correctly. <br>','cname failed wix site')
     callback(null, responseJSON);
   }
 }
