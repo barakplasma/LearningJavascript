@@ -10,7 +10,7 @@ var event = {
   "moduleId": "string", // the current Motion AI Module ID
   "inResponseTo": "string", // the Motion AI module that directed the conversation flow to this module
   "reply": "string", // the end-user's reply that led to this module
-  "result":"testthiswix.com"//'personsphotography.com'//"testthiswix.com"//'camadem.com'//'goldmedalwaters.com' // 'g.co' // any extracted data from the prior module, if applicable
+  "result":"reddit.com"//'personsphotography.com'//"testthiswix.com"//'camadem.com'//'goldmedalwaters.com' // 'g.co' // any extracted data from the prior module, if applicable
 }
 
 // this is the object we will return to Motion AI in the callback
