@@ -1,4 +1,3 @@
-
 var request = require('request');
 var responseJSON = {
     "response": "Internal Error 500", // what the bot will respond with (more is appended below)
@@ -40,7 +39,7 @@ function santaIndex(body) {
  * Chooses a speech: old Saint Nick is my old friend, or the alternative fact that Santa doesn't exist.
  */
 function chooseSanta(body) {
-    console.log('chooseSanta(',body,')')
+    //console.log('chooseSanta(',body,')')
     return santaIndex(body) !== -1 ? santa : noSanta;
 }
 
@@ -48,6 +47,7 @@ function chooseSanta(body) {
  * Sean Spicer packages the speech up for the media
  */
 function prepareResponse(santaResponse) {
+    //console.log('preparing response for callback')
     responseJSON.response = santaResponse.message
     responseJSON.quickReplies = santaResponse.choices
     return responseJSON;
@@ -57,11 +57,13 @@ request.get({ url: 'http://'.concat(process.argv[2]), timeout: 5000 }, (error, r
         console.log('started request')
         console.log('err:',error)
         var _response = error ? noSanta : chooseSanta(body);
-        console.log('preparing response')
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
         callback(null, prepareResponse(_response()));
+        console.log('exiting request')
+        console.log(process._getActiveRequests(),'\n') //process._getActiveHandles() is more verbose
 });
 
 function callback(err, data) {
   console.log('callback output: ', err, JSON.stringify(data,null,2));
+  //process.exit()
 }
