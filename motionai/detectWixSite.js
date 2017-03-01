@@ -60,8 +60,28 @@ request.get({ url: 'http://'.concat(process.argv[2]), timeout: 5000 }, (error, r
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
         callback(null, prepareResponse(_response()));
         console.log('exiting request')
-        console.log(process._getActiveRequests(),'\n') //process._getActiveHandles() is more verbose
+        killGetAddrInfo()
 });
+
+function killGetAddrInfo(){
+    console.log(process._getActiveRequests()) //process._getActiveHandles() is more verbose
+    const spawn = require('child_process').spawn;
+    const cmd = spawn('sh', ['-c','ps aux | grep getAddrInfo | awk \'{print $2}\'']);
+
+    cmd.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+    const cmd2 = spawn('kill',[data])
+    console.log(process._getActiveRequests()) 
+    });
+
+    cmd.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+    });
+
+    cmd.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+    });
+}
 
 function callback(err, data) {
   console.log('callback output: ', err, JSON.stringify(data,null,2));
