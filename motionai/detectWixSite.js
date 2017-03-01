@@ -1,4 +1,6 @@
 var request = require('request');
+var dns = require('dns')
+
 var responseJSON = {
     "response": "Internal Error 500", // what the bot will respond with (more is appended below)
     "continue": true, // denotes that Motion AI should hit this module again, rather than continue further in the flow
@@ -52,20 +54,22 @@ function prepareResponse(santaResponse) {
     responseJSON.quickReplies = santaResponse.choices
     return responseJSON;
 }
-console.log('https://isitup.org/'.concat(process.argv[2]))
-request.get('https://isitup.org/'.concat(process.argv[2]),(error,response,body)=>{
-   console.log('err: ',error,'body',body)
+
+dns.resolve4(process.argv[2],(error,addr)=>{
+    if(error) console.log(error)
+    console.log('addr',addr)
 })
-/*
-request.get({ url: 'http://'.concat(process.argv[2]), timeout: 3000 }, (error, response, body) => {
+
+request.get({ url: 'http://'.concat(process.argv[2]), timeout: 5000 }, (error, response, body) => {
         console.log('started request')
         console.log('err:',error)
         var _response = error ? noSanta : chooseSanta(body);
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
         callback(null, prepareResponse(_response()));
         console.log('exiting request')
+
 });
-*/
+
 function callback(err, data) {
   console.log('callback output: ', err, JSON.stringify(data,null,2));
   //process.exit()
