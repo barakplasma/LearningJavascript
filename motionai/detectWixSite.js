@@ -52,37 +52,20 @@ function prepareResponse(santaResponse) {
     responseJSON.quickReplies = santaResponse.choices
     return responseJSON;
 }
-
-request.get({ url: 'http://'.concat(process.argv[2]), timeout: 5000 }, (error, response, body) => {
+console.log('https://isitup.org/'.concat(process.argv[2]))
+request.get('https://isitup.org/'.concat(process.argv[2]),(error,response,body)=>{
+   console.log('err: ',error,'body',body)
+})
+/*
+request.get({ url: 'http://'.concat(process.argv[2]), timeout: 3000 }, (error, response, body) => {
         console.log('started request')
         console.log('err:',error)
         var _response = error ? noSanta : chooseSanta(body);
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
         callback(null, prepareResponse(_response()));
         console.log('exiting request')
-        killGetAddrInfo()
 });
-
-function killGetAddrInfo(){
-    console.log(process._getActiveRequests()) //process._getActiveHandles() is more verbose
-    const spawn = require('child_process').spawn;
-    const cmd = spawn('sh', ['-c','ps aux | grep getAddrInfo | awk \'{print $2}\'']);
-
-    cmd.stdout.on('data', (data) => {
-    console.log(`stdout: ${data}`);
-    const cmd2 = spawn('kill',[data])
-    console.log(process._getActiveRequests()) 
-    });
-
-    cmd.stderr.on('data', (data) => {
-    console.log(`stderr: ${data}`);
-    });
-
-    cmd.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
-    });
-}
-
+*/
 function callback(err, data) {
   console.log('callback output: ', err, JSON.stringify(data,null,2));
   //process.exit()
