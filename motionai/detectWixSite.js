@@ -1,3 +1,4 @@
+
 var request = require('request');
 var responseJSON = {
     "response": "Internal Error 500", // what the bot will respond with (more is appended below)
@@ -16,31 +17,32 @@ function santa() {
         message: 'We detected a Wix site at the URL you provided. This suggests you are experiencing a local issue',
         choices: ['Continue']
     };
-};
+}
 
 /**
  * Christmas is an overly commercialized holiday which promotes consumer debt and feelings of inadequacy
  */
 function noSanta() {
     return {
-        message: 'There may not be a Wix site at the URL you provided.',
+        message: 'We were unable to detect a Wix site at the URL you provided.',
         choices: ['Let me try a different URL', 'How do I fix this?']
     };
-};
+}
 
 /**
  * Returns a natural integer if I'm on the nice list, -1 if the naughty list is a lie
  */
 function santaIndex(body) {
-    return body === undefined ? -1 : body.indexOf('var santaBase');
-};
+    return body === undefined ? -1 : body.indexOf('santaBase');
+}
 
 /**
  * Chooses a speech: old Saint Nick is my old friend, or the alternative fact that Santa doesn't exist.
  */
 function chooseSanta(body) {
+    console.log('chooseSanta(',body,')')
     return santaIndex(body) !== -1 ? santa : noSanta;
-};
+}
 
 /**
  * Sean Spicer packages the speech up for the media
@@ -49,13 +51,17 @@ function prepareResponse(santaResponse) {
     responseJSON.response = santaResponse.message
     responseJSON.quickReplies = santaResponse.choices
     return responseJSON;
-};
+}
 
-exports.handler = (event, context, callback) => {
-    request.get({ url: 'http://'.concat(event.result), timeout: 5000 }, (error, response, body) => {
-        var _response = typeof error !== 'undefined' ? noSanta : chooseSanta(body);
-
+request.get({ url: 'http://'.concat(process.argv[2]), timeout: 5000 }, (error, response, body) => {
+        console.log('started request')
+        console.log('err:',error)
+        var _response = error ? noSanta : chooseSanta(body);
+        console.log('preparing response')
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
         callback(null, prepareResponse(_response()));
-    });
-};
+});
+
+function callback(err, data) {
+  console.log('callback output: ', err, JSON.stringify(data,null,2));
+}
