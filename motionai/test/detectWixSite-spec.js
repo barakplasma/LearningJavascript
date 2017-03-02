@@ -23,7 +23,9 @@ var currQuery = chatBotQueryParams;
 function Query() {
     this.currQuery = chatBotQueryParams;
     /**
-     * @param {String} m
+     * Sends message to Motion.ai; completes callback on end
+     * @param {String} m - message
+     * @param {function} cb - callback
      */
     this.m = function(m,cb){
         this.currQuery.msg = m;
@@ -37,7 +39,7 @@ function Query() {
 
 chai.use(chaihttp)
 
-describe('loads', () => {
+describe.only('loads', () => {
     it('should return a 200 response to our GET request', (done) => {
         let q = new Query()
         q.m('hi',(err,res)=>{
@@ -45,15 +47,20 @@ describe('loads', () => {
             done()
         })
     })
+    it('should respond with our text', (done)=>{
+        let q = new Query()
+        q.m('hi',(err,res)=>{
+            res.body.should.have.property('botResponse')
+            res.body.botResponse.should.equal('Welcome to the Wix Technical Assistant.\nI\'m here to help you with technical issues.\n::next::\nAre you experiencing issues with your live site or the Wix Editor?')
+            done()
+        })
+    })
 })
 describe('URL parser', () => {
     it('should not allow a bad input',(done)=>{
         let q = new Query()
-        chai.request(q.m('hi'))
-        .get('/')
-        .end((err,res)=>{
-            console.log(res.body.botResponse)
-            done()
+        q.m('hi',(err,res)=>{
+
         })
     })
     it('should return a properly formatted URL from a normal URL')
