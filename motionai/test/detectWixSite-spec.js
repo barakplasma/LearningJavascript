@@ -50,6 +50,7 @@ function Query() {
 chai.use(chaihttp)
 
 describe('loads', function () {
+    this.timeout(10000);
     it('should return a 200 response to our GET request', (done) => {
         let q = new Query()
         q.m('hi', (err, res) => {
@@ -68,6 +69,7 @@ describe('loads', function () {
     })
 })
 describe('URL parser', function () {
+    this.timeout(10000);
     it('should not allow a bad input')
     it('should return a properly formatted URL from a normal URL')
     it('should handle with www')
@@ -97,17 +99,27 @@ describe('detect HTTPS Wix site', function(){
             res.body.botResponse.should.equal(SantaDetected)
         },done)
     })
-    it('should detect Free Site michaelsalaverry.wix.com/sandbox')
+    it('should detect Free Site michaelswix.wixsite.com/sandbox', function(done){
+        testSite('michaelswix.wixsite.com/sandbox',function(res){
+            res.body.botResponse.should.equal(SantaDetected)
+        },done)
+    })
     it('should detect Pointed Domain')
 })
 
-describe.skip('detect HTTP Wix site', function(){
+describe('detect HTTP Wix site', function(){
+    this.timeout(10000);
     it('should detect NS connected RU site')
-    it('should detect Free Site michaelsalaverry.wix.com/loadingtime')
+    it('should detect Free Site michaelswix.wixsite.com/loadingtime', function(done){
+        testSite('michaelswix.wixsite.com/loadingtest',function(res){
+            res.body.botResponse.should.equal(SantaDetected)
+        },done)
+    })
     it('should detect Pointed Domain')
 })
 
 describe.skip('report not a Wix site', function(){
+    this.timeout(10000);
     it('should fail on a non-wix site google.com')
     it('should fail when DNS correct but premium not paid for')
     it('should fail when A record wrong queendina.com')
