@@ -17,23 +17,34 @@ const chatBotQueryParams = {
 
 var currQuery = chatBotQueryParams;
 
-function newQuery(msg){
+function Query(msg,session){
     var currQuery = chatBotQueryParams
     currQuery.msg = msg
-    return motionAiEndpoint + '?' + querystring.stringify(currQuery)
+    currQuery.session = session
+    return chai.request(motionAiEndpoint + '?' + querystring.stringify(currQuery))
 }
 //console.log(newQuery('hi'))
+
+function Q(msg){
+    var session = Date.now()
+    return Query(msg,session)
+}
 
 chai.use(chaihttp)
 
 describe('loads', () => {
     it('should return a 200 response to our GET request', (done) => {
-        chai.request(newQuery('hi'))
+        var q1 = q;
+        // WRITE A CONSTRUCTOR FOR QUERIES SO I DONT HAVE TO KEEP TRACK OF SESSIONS BETWEEN TESTS
+        //var session = Date.now()
+        //Query('hi',session)
         done()
     })
 })
 describe('URL parser', () => {
-    it('should not allow a bad input')
+    it('should not allow a bad input',(done)=>{
+        done()
+    })
     it('should return a properly formatted URL from a normal URL')
 })
 describe('detect Wix site', () => {
