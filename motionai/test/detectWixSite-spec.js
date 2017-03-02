@@ -11,7 +11,7 @@ const chatBotQueryParams = {
     bot: 36231,
     msg: '',
     session: Date.now(),
-    key: 'fd2e96e0e6f74353a8903226d6059102',
+    key: 'fd2e96e0e6f74353a8903226d6059102',//generated a new API key, which I won't commit in the future.
     from: ''
 }
 
