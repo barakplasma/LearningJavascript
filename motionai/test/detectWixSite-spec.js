@@ -5,41 +5,56 @@ const should = chai.should();
 
 const querystring = require('querystring')
 
+const key = require('./secrets')
+
 const motionAiEndpoint = 'https://api.motion.ai/1.0/messageBot'
 
 const chatBotQueryParams = {
     bot: 36231,
     msg: '',
     session: Date.now(),
-    key: 'fd2e96e0e6f74353a8903226d6059102',//generated a new API key, which I won't commit in the future.
+    key: key.apiKey, //hidden in secret.js out of git scm
     from: ''
 }
 
 var currQuery = chatBotQueryParams;
 
-function Query(msg) {
+// CONSTRUCTOR FOR QUERIES SO I DONT HAVE TO KEEP TRACK OF SESSIONS BETWEEN TESTS
+function Query() {
     this.currQuery = chatBotQueryParams;
-    this.currQuery.msg = msg;
+    /**
+     * @param {String} m
+     */
+    this.m = function(m,cb){
+        this.currQuery.msg = m;
+        chai.request(this.d)
+        .get('/')
+        .end(cb)
+    };
     this.currQuery.session = Date.now();
-    this.send = ()=>{chai.request(motionAiEndpoint + '?' + querystring.stringify(this.currQuery))};
+    this.d = motionAiEndpoint + '?' + querystring.stringify(this.currQuery)
 }
 
 chai.use(chaihttp)
 
 describe('loads', () => {
     it('should return a 200 response to our GET request', (done) => {
-        // WRITE A CONSTRUCTOR FOR QUERIES SO I DONT HAVE TO KEEP TRACK OF SESSIONS BETWEEN TESTS
-        //var session = Date.now()
-        //Query('hi',session)
-        var q = new Query()
-        done()
+        let q = new Query()
+        q.m('hi',(err,res)=>{
+            res.should.have.status(200);
+            done()
+        })
     })
 })
 describe('URL parser', () => {
     it('should not allow a bad input',(done)=>{
-        var q = new Query('hi',Date.now())
-        q.
-        done()
+        let q = new Query()
+        chai.request(q.m('hi'))
+        .get('/')
+        .end((err,res)=>{
+            console.log(res.body.botResponse)
+            done()
+        })
     })
     it('should return a properly formatted URL from a normal URL')
 })
