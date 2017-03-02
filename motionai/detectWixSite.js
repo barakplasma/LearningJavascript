@@ -1,5 +1,7 @@
 var request = require('request');
 var dns = require('dns')
+var test = process.platform=='darwin'?true:false;
+var input = test?process.argv[2]:event.result; //test or production env check
 
 var responseJSON = {
     "response": "Internal Error 500", // what the bot will respond with (more is appended below)
@@ -55,14 +57,12 @@ function prepareResponse(santaResponse) {
     return responseJSON;
 }
 
-dns.resolve4(process.argv[2],(error,addr)=>{
-    if(error) console.log(error)
-    console.log('addr',addr)
-})
+if(input.slice(0,3)===true)input = input.slice(4)
 
-request.get({ url: 'http://'.concat(process.argv[2]), timeout: 7000 }, (error, response, body) => {
+request.get({ url: 'https://'.concat(input), timeout: 7000 }, (error, response, body) => {
         console.log('started request')
         console.log('err:',error)
+        console.log('input:','https://'.concat(input))
         var _response = error ? noSanta : chooseSanta(body);
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
         callback(null, prepareResponse(_response()));
@@ -70,6 +70,7 @@ request.get({ url: 'http://'.concat(process.argv[2]), timeout: 7000 }, (error, r
 
 });
 
+//used to model motionAI
 function callback(err, data) {
   console.log('callback output: ', err, JSON.stringify(data,null,2));
   //process.exit()
