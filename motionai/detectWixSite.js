@@ -60,7 +60,7 @@ dns.resolve4(process.argv[2],(error,addr)=>{
     console.log('addr',addr)
 })
 
-request.get({ url: 'http://'.concat(process.argv[2]), timeout: 5000 }, (error, response, body) => {
+request.get({ url: 'http://'.concat(process.argv[2]), timeout: 7000 }, (error, response, body) => {
         console.log('started request')
         console.log('err:',error)
         var _response = error ? noSanta : chooseSanta(body);
