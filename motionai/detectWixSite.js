@@ -13,7 +13,7 @@ var responseJSON = {
 };
 
 /**
- * Santa, can I have 20,000 RSU's and no tax burden for Christmas?
+ * preps message if santa present
  */
 function santa() {
     return {
@@ -24,6 +24,7 @@ function santa() {
 
 /**
  * Christmas is an overly commercialized holiday which promotes consumer debt and feelings of inadequacy
+ * We couldn't find Santa
  */
 function noSanta() {
     return {
@@ -48,7 +49,8 @@ function chooseSanta(body) {
 }
 
 /**
- * Sean Spicer packages the speech up for the media
+ *
+ * @param {object} santaResponse 
  */
 function prepareResponse(santaResponse) {
     //console.log('preparing response for callback')
@@ -57,17 +59,26 @@ function prepareResponse(santaResponse) {
     return responseJSON;
 }
 
-if(input.slice(0,3)===true)input = input.slice(4)
+if(input.slice(0,3)=='www')input = input.slice(4)
 
-request.get({ url: 'https://'.concat(input), timeout: 7000 }, (error, response, body) => {
+var prefix = 'https://www.'
+var prefix2 = 'http://www.'
+
+request.get({ url: prefix.concat(input), timeout: 7000 }, (error, response, body) => {
         console.log('started request')
         console.log('err:',error)
-        console.log('input:','https://'.concat(input))
-        var _response = error ? noSanta : chooseSanta(body);
+        console.log('input:',prefix.concat(input))
+        if(error){ //added due to https://{no www} limitation
+            request.get({ url: prefix2.concat(input), timeout: 7000 }, (error, response, body) => {
+                var _response = error ? noSanta : chooseSanta(body);
+                callback(null, prepareResponse(_response()));
+                console.log('exiting request')
+            })
+        }
+        if(!error)var _response = error ? noSanta : chooseSanta(body);
         // the speech isn't just some lines on a teleprompter, somebody's gotta beat it into the media
-        callback(null, prepareResponse(_response()));
-        console.log('exiting request')
-
+        if(!error)callback(null, prepareResponse(_response()));
+        if(!error)console.log('exiting request')
 });
 
 //used to model motionAI

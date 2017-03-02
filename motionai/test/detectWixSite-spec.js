@@ -43,11 +43,18 @@ describe('URL parser', () => {
     })
     it('should return a properly formatted URL from a normal URL')
 })
-describe.skip('detect Wix site', () => {
+describe.skip('detect HTTPS Wix site', () => {
     it('should detect NS connected testthiswix.com')
     it('should detect Free Site michaelsalaverry.wix.com/sandbox')
     it('should detect Pointed Domain')
 })
+
+describe.skip('detect HTTP Wix site', () => {
+    it('should detect NS connected RU site')
+    it('should detect Free Site michaelsalaverry.wix.com/loadingtime')
+    it('should detect Pointed Domain')
+})
+
 describe.skip('report not a Wix site', () => {
     it('should fail on a non-wix site google.com')
     it('should fail when DNS correct but premium not paid for')
