@@ -8,6 +8,8 @@ var hrList = []
 var last = ''
 var nuclearOption = false
 
+"use strict";
+
 //Write an HTTP server
 var server = http.createServer(function (request, response) {
     response.writeHead(200, {
