@@ -1,5 +1,6 @@
 var express = require('express')
 var file = process.argv[3];
+var path = require('path')
 
 var app = express()
 app.set('views', file || path.join(__dirname,'templates'))
