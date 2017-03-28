@@ -20,7 +20,6 @@ module.exports = {
         function unitsOfAlcohol(strength,volume){
             return (strength*volume)/1000;
         }
-        console.log(duration())
 
         return [1.0, false]
     }
