@@ -5,7 +5,7 @@ module.exports = {
             x.setHours(t.substr(0,2),t.substr(3,2))
             return x.valueOf();
         }
-        
+
         function dateFixer(){
             //handles overnights
             const dayInSeconds = 1000*60*60*24;
