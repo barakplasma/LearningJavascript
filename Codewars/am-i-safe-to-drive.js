@@ -38,7 +38,7 @@ module.exports = {
                 }, 0);
             var remainingAlcoholUnits = units - duration()+1;
             units = Number.parseFloat(units.toFixed(2))
-            console.log(remainingAlcoholUnits)
+            //console.log(remainingAlcoholUnits)
             return remainingAlcoholUnits < 1.00 ? [units, true] : [units, false];
         }
 
