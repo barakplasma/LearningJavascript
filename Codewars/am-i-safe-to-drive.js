@@ -23,9 +23,10 @@ module.exports = {
         function unitsOfAlcohol(strength, volume) {
             // 2. Units of alcohol are calculated by strength (ABV) x volume (ml) / 1000 = units.
             // 6. Return total units to 2 decimal places rounded. For example 1.10 => 1.1 and 1.236 => 1.24
-            return Math.floor((strength * volume) / 10)/10;
+            //return Math.floor(Math.round((strength * volume)/10))/100;
+            return (strength*volume)/1000;
         }
-        console.log(unitsOfAlcohol(10,100)==1.0)
+        //console.log(unitsOfAlcohol(10,100))
 
         function legalToDrive() {
             // 1. On average it takes a person 1 hour for their body to remove 1 unit of alcohol.
@@ -35,8 +36,10 @@ module.exports = {
                     //console.log('acc:',acc)
                     return acc + unitsOfAlcohol(val[0],val[1]);
                 }, 0);
-            var remainingAlcoholUnits = units - duration();
-            return remainingAlcoholUnits > 1 ? [units, true] : [units, false];
+            var remainingAlcoholUnits = units - duration()+1;
+            units = Number.parseFloat(units.toFixed(2))
+            console.log(remainingAlcoholUnits)
+            return remainingAlcoholUnits < 1.00 ? [units, true] : [units, false];
         }
 
         return legalToDrive()
