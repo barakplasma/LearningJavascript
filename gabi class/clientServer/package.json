@@ -1,0 +1,12 @@
+{
+  "name": "client-server",
+  "version": "0.0.1",
+  "description": "in class thing",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon index.js"
+  },
+  "author": "Michael Salaverry",
+  "license": "MIT"
+}
