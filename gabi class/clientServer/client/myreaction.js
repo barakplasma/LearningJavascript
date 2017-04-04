@@ -12,3 +12,8 @@ ReactDOM.render(
     <HeaderComponent text="Hello Class" />,
     document.querySelector('#Header')
 );
+
+ReactDOM.render(
+    <HeaderComponent text="Another H1" />,
+    document.querySelector('#SITE-CONTAINER')
+);
