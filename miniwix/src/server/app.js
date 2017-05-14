@@ -1,13 +1,31 @@
+const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const app = express();
 
-app.get('/api/site', function(req, res){
-    res.send('JSON');
+var someSite = {
+    title: "Hello World",
+    content: "<p>Some text</p><p>Some text</p>"
+};
+
+app.get('/api/site', function (req, res) {
+    res.send(someSite);
 });
 
-app.put('/api/site', function(req, res){
-    res.send('JSON');
+app.put('/api/site', function (req, res) {
+    fs.writeFile(`${req}`, req.body, function (err) {
+        if (err) {
+            res.status(500).send();
+        } else {
+            res.status(200).send();
+        }
+    });
 });
 
-module.exports = app; 
+app.get('/editor', function (req, res) {
+    res.render('editSite');
+});
+
+app.listen(3000);
+
+module.exports = app;
