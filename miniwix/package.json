@@ -2,13 +2,14 @@
   "name": "miniwix",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/server/app",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -w"
   },
   "author": "michaels@wix.com",
   "license": "ISC",
   "dependencies": {
+    "chai-http": "^3.0.0",
     "express": "^4.15.2"
   }
 }
