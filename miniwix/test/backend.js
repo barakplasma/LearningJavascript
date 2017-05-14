@@ -15,9 +15,7 @@ describe('PUT /api/site', () => {
             })
             .end((err, res) => {
                 should.not.exist(err);
-                // there should be a 200 status code
                 res.status.should.equal(200);
-                // the response should be JSON
                 res.type.should.equal('application/json');
                 done();
             });
@@ -28,9 +26,7 @@ describe('PUT /api/site', () => {
             .get('/api/site')
             .end((err, res) => {
                 should.not.exist(err);
-                // there should be a 200 status code
                 res.status.should.equal(200);
-                // the response should be JSON
                 res.type.should.equal('application/json');
                 done();
             });
@@ -43,9 +39,7 @@ describe('GET /api/site', (done) => {
             .get('/api/site')
             .end((err, res) => {
                 should.not.exist(err);
-                // there should be a 200 status code
                 res.status.should.equal(200);
-                // the response should be JSON
                 res.type.should.equal('application/json');
                 done();
             });
@@ -58,8 +52,8 @@ describe('GET /editor', (done) => {
             .get('/editor')
             .end((err, res) => {
                 should.not.exist(err);
-                // there should be a 200 status code
                 res.status.should.equal(200);
+                res.type.should.equal('text/html');
                 done();
             });
     });
@@ -71,8 +65,10 @@ describe('GET /site', (done) => {
             .get('/site')
             .end((err, res) => {
                 should.not.exist(err);
-                // there should be a 200 status code
                 res.status.should.equal(200);
+                //console.log(res.text);
+                res.text.should.contain('Some text');
+                res.type.should.equal('text/html');
                 done();
             });
     });

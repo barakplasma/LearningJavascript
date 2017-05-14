@@ -3,7 +3,10 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 const pug = require('pug');
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('view engine','pug');
 
 var someSite = {
@@ -12,18 +15,18 @@ var someSite = {
 };
 
 app.get('/api/site', function (req, res) {
-    res.send(someSite);
+    res.json(someSite);
 });
 
 app.put('/api/site', function (req, res) {
-    // fs.writeFile(`../../data/site.json`, req.body, function (err) {
-    //     if (err) {
-    //         res.status(500).send({"error":err});
-    //     } else {
-    //         res.status(200).send({"status":200,"added":req.body});
-    //     }
-    // });
-    res.status(200).send({"status":200,"added":req.body});
+    //console.log(req.body);
+    fs.writeFile(`./data/site.json`, JSON.stringify(req.body), function (err) {
+        if (err) {
+            res.status(500).json({"error":err});
+        } else {
+            res.status(200).json({"status":200,"added":req.body});
+        }
+    });
 });
 
 app.get('/editor', function (req, res) {
@@ -31,7 +34,9 @@ app.get('/editor', function (req, res) {
 });
 
 app.get('/site', function (req, res) {
-    res.render('site',someSite);
+    fs.readFile('./data/site.json','utf8',(err,site)=>{
+        res.render('site',JSON.parse(site));
+    });
 });
 
 module.exports = app;
