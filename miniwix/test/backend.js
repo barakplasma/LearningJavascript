@@ -9,7 +9,10 @@ describe('PUT /api/site', () => {
     it('will receive some site in the request body, and save it', (done) => {
         chai.request(server)
             .put('/api/site')
-            .send({"site":0})
+            .send({
+                title: "Hello World",
+                content: "<p>Some text</p><p>Some text</p>"
+            })
             .end((err, res) => {
                 should.not.exist(err);
                 // there should be a 200 status code

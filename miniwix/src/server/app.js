@@ -16,19 +16,22 @@ app.get('/api/site', function (req, res) {
 });
 
 app.put('/api/site', function (req, res) {
-    fs.writeFile(`${req}`, req.body, function (err) {
-        if (err) {
-            res.status(500).send();
-        } else {
-            res.status(200).send();
-        }
-    });
+    // fs.writeFile(`../../data/site.json`, req.body, function (err) {
+    //     if (err) {
+    //         res.status(500).send({"error":err});
+    //     } else {
+    //         res.status(200).send({"status":200,"added":req.body});
+    //     }
+    // });
+    res.status(200).send({"status":200,"added":req.body});
 });
 
 app.get('/editor', function (req, res) {
     res.render('editor',someSite);
 });
- 
-app.listen(3000);
+
+app.get('/site', function (req, res) {
+    res.render('site',someSite);
+});
 
 module.exports = app;
