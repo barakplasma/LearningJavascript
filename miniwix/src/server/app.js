@@ -2,6 +2,9 @@ const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const app = express();
+const pug = require('pug');
+
+app.set('view engine','pug');
 
 var someSite = {
     title: "Hello World",
@@ -23,9 +26,9 @@ app.put('/api/site', function (req, res) {
 });
 
 app.get('/editor', function (req, res) {
-    res.render('editSite');
+    res.render('editor',someSite);
 });
-
+ 
 app.listen(3000);
 
 module.exports = app;
