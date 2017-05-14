@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/server/app",
   "scripts": {
-    "test": "mocha -w"
+    "test": "mocha -w",
+    "start": "node ./src/server/app.js"
   },
   "author": "michaels@wix.com",
   "license": "ISC",

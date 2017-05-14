@@ -34,9 +34,12 @@ app.get('/editor', function (req, res) {
 });
 
 app.get('/site', function (req, res) {
-    fs.readFile('./data/site.json','utf8',(err,site)=>{
+    fs.readFile('./data/site.json', 'utf8', (err,site)=>{
+        if(err) throw err;
         res.render('site',JSON.parse(site));
     });
 });
+
+app.listen(8080);
 
 module.exports = app;
