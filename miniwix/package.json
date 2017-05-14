@@ -1,0 +1,14 @@
+{
+  "name": "miniwix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "michaels@wix.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
