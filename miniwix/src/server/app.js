@@ -24,8 +24,8 @@ app.post('/api/site', function (req, res) {
         if (err) {
             res.status(500).json({"error":err});
         } else {
-            console.log(req);
-            res.status(200).redirect('/site');//json({"status":200,"added":req.body});
+            //console.log(req.body);
+            res.status(200).redirect('/site');
         }
     });
 });
