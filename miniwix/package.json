@@ -5,7 +5,7 @@
   "main": "src/server/app",
   "scripts": {
     "test": "mocha -w",
-    "start": "node ./src/server/app.js"
+    "start": "nodemon ./src/server/app.js"
   },
   "author": "michaels@wix.com",
   "license": "ISC",

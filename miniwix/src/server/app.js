@@ -18,13 +18,14 @@ app.get('/api/site', function (req, res) {
     res.json(someSite);
 });
 
-app.put('/api/site', function (req, res) {
+app.post('/api/site', function (req, res) {
     //console.log(req.body);
     fs.writeFile(`./data/site.json`, JSON.stringify(req.body), function (err) {
         if (err) {
             res.status(500).json({"error":err});
         } else {
-            res.status(200).json({"status":200,"added":req.body});
+            console.log(req);
+            res.status(200).redirect('/site');//json({"status":200,"added":req.body});
         }
     });
 });

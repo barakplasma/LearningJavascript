@@ -20,7 +20,7 @@ function verifyPut(input,done){
             });
 }
 
-describe('PUT /api/site', () => {
+describe('POST /api/site', () => {
     it('will receive some site in the request body, and save it', (done) => {
         newData();
         
@@ -30,7 +30,7 @@ describe('PUT /api/site', () => {
             };
         
         chai.request(server)
-            .put('/api/site')
+            .post('/api/site')
             .send(input)
             .end((err, res) => { 
                 should.not.exist(err);

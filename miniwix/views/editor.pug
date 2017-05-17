@@ -3,3 +3,11 @@ html
         title= title
     body
         h1 This is a miniWix editor
+        form(method='POST' action='/api/site')
+            div
+                label Title Text input
+                input(name='title')
+                br
+                label Body Text input
+                input(name='content')
+            button(type='submit') Submit
