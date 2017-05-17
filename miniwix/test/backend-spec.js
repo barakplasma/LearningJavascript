@@ -5,23 +5,41 @@ chai.use(chaiHttp);
 
 const server = require('../src/server/app');
 
-describe('PUT /api/site', () => {
-    it('will receive some site in the request body, and save it', (done) => {
-        chai.request(server)
-            .put('/api/site')
-            .send({
-                title: "Hello World",
-                content: "<p>Some text</p><p>Some text</p>"
-            })
+let time = '';
+function newData(){time = `${Date.now()}`;}
+
+function verifyPut(input,done){
+    chai.request(server)
+            .get('/api/site')
             .end((err, res) => {
                 should.not.exist(err);
                 res.status.should.equal(200);
                 res.type.should.equal('application/json');
+                res.body.should.eql(input,`input JSON doesn't equal the output`);
+                done();
+            });
+}
+
+describe('PUT /api/site', () => {
+    it('will receive some site in the request body, and save it', (done) => {
+        let input = {
+                title: "Hello World",
+                content: time
+            };
+        newData();
+        chai.request(server)
+            .put('/api/site')
+            .send(input)
+            .end((err, res) => { 
+                should.not.exist(err);
+                res.status.should.equal(200);
+                res.type.should.equal('application/json');
+                verifyPut(input,done);
                 done();
             });
     });
 
-    it('overwrite the previous site', (done) => {
+    it.skip('overwrite the previous site', (done) => {
         chai.request(server)
             .get('/api/site')
             .end((err, res) => {
@@ -30,6 +48,7 @@ describe('PUT /api/site', () => {
                 res.type.should.equal('application/json');
                 done();
             });
+        
     });
 });
 
@@ -41,6 +60,7 @@ describe('GET /api/site', (done) => {
                 should.not.exist(err);
                 res.status.should.equal(200);
                 res.type.should.equal('application/json');
+                res.body.should.have.property('title','Hello World','Title set incorrectly');
                 done();
             });
     });
@@ -60,6 +80,7 @@ describe('GET /editor', (done) => {
 });
 
 describe('GET /site', (done) => {
+    
     it('will render a webpage; site.html', (done) => {
         chai.request(server)
             .get('/site')
@@ -67,7 +88,7 @@ describe('GET /site', (done) => {
                 should.not.exist(err);
                 res.status.should.equal(200);
                 //console.log(res.text);
-                res.text.should.contain('Some text');
+                res.text.should.contain(time);
                 res.type.should.equal('text/html');
                 done();
             });
