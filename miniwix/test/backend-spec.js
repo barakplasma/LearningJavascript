@@ -22,11 +22,13 @@ function verifyPut(input,done){
 
 describe('PUT /api/site', () => {
     it('will receive some site in the request body, and save it', (done) => {
+        newData();
+        
         let input = {
                 title: "Hello World",
                 content: time
             };
-        newData();
+        
         chai.request(server)
             .put('/api/site')
             .send(input)
@@ -80,7 +82,6 @@ describe('GET /editor', (done) => {
 });
 
 describe('GET /site', (done) => {
-    
     it('will render a webpage; site.html', (done) => {
         chai.request(server)
             .get('/site')
