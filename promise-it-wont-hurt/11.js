@@ -14,7 +14,7 @@ function alwaysThrows (){
 	throw Error('OH NOES');
 }
 
-function iterate(arg){
+function iterate(arg=1){
 	console.log(arg);
 	return arg+1;
 }
