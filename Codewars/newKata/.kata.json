@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "name": "Sum by Factors",
+  "slug": "sum-by-factors",
+  "href": "/kata/sum-by-factors",
+  "description": "Given an array of positive or negative integers \n\n<code> I= [i<sub>1</sub>,..,i<sub>n</sub>]</code>\n\nyou have to produce a sorted array P of the form \n\n<code>[ [p, sum of all i<sub>j</sub> of I for which p is a prime factor (p positive) of i<sub>j</sub>] ...]</code>\n\nP will be sorted by increasing order of the prime numbers.\nThe final result has to be given as a string in Java, C#, C, C++ and as an array of arrays in other languages.\n\nExample:\n\n\n```python\nI = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]\n```\n```elixir\nI = [12, 15] # result = [{2, 12}, {3, 27}, {5, 15}]\n```\n```rust\nI = [12, 15] # result = [(2, 12), (3, 27), (5, 15)]\n```\n```swift\nI = [12, 15] # result = [(2, 12), (3, 27), (5, 15)]\n```\n```ruby\nI = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]\n```\n```java\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```cpp\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```c\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```csharp\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```clojure\nI = [12, 15] ; result = [[2, 12], [3, 27], [5, 15]]\n```\n```haskell\nI = [12, 15] -- result = [(2,12),(3,27),(5,15)]\n```\n```javascript\nI = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]\n```\n```coffeescript\nI = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]\n```\n```typescript\nI = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]\n```\n```php\nI = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]\n```\n\n[2, 3, 5] is the list of all prime factors of the elements of I, hence the result.\n\n**Notes:**\nIt can happen that a sum is 0 if some numbers are negative!\n\nExample: I = [15, 30, -45]\n5 divides 15, 30 and (-45) so 5 appears in the result, the sum of the numbers for which 5 is a factor is 0 so we have [5, 0] in the result amongst others. \n\n\n",
+  "author": "Michael Salaverry",
+  "rank": -4,
+  "averageCompletion": null,
+  "tags": [
+    "Algorithms",
+    "Numbers",
+    "Data Types",
+    "Arrays"
+  ],
+  "session": {
+    "projectId": "5ae4617fd2ee27675e00001f",
+    "solutionId": "5ae46180d2ee27675e000021",
+    "setup": "function sumOfDivided(lst) {\n  //your code\n  return [[2, 12]];\n}\n ",
+    "exampleFixture": "Test.assertSimilar(sumOfDivided([12, 15]), [ [2, 12], [3, 27], [5, 15] ]);\nTest.assertSimilar(sumOfDivided([15,21,24,30,45]), [ [2, 54], [3, 135], [5, 90], [7, 21] ]);",
+    "code": null
+  }
+}
