@@ -1,11 +1,11 @@
 module.exports = function (wallaby) {
     return {
       files: [
-        'kata.js'
+        './sum-of-intervals/kata.js'
       ],
   
       tests: [
-        'test.js'
+        './sum-of-intervals/test.js'
       ],
   
       testFramework: 'mocha',

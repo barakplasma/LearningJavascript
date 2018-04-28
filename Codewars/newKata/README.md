@@ -1,69 +1,138 @@
-Given an array of positive or negative integers 
+The drawing below gives an idea of how to cut a given "true" rectangle into squares ("true" rectangle meaning that the two dimensions are different).
 
-<code> I= [i<sub>1</sub>,..,i<sub>n</sub>]</code>
+![alternative text](http://i.imgur.com/lk5vJ7sm.jpg)
 
-you have to produce a sorted array P of the form 
+Can you translate this drawing into an algorithm?
 
-<code>[ [p, sum of all i<sub>j</sub> of I for which p is a prime factor (p positive) of i<sub>j</sub>] ...]</code>
+You will be given two dimensions 
 
-P will be sorted by increasing order of the prime numbers.
-The final result has to be given as a string in Java, C#, C, C++ and as an array of arrays in other languages.
+1. a positive integer length (parameter named `lng`)
+2. a positive integer width (parameter named `wdth`)
 
-Example:
+You will return an array with the size of each of the  squares.
+
+Shell bash returns a string.
 
 
 ```python
-I = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```crystal
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
 ```
 ```elixir
-I = [12, 15] # result = [{2, 12}, {3, 27}, {5, 15}]
-```
-```rust
-I = [12, 15] # result = [(2, 12), (3, 27), (5, 15)]
-```
-```swift
-I = [12, 15] # result = [(2, 12), (3, 27), (5, 15)]
-```
-```ruby
-I = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]
-```
-```java
-I = {12, 15}; // result = "(2 12)(3 27)(5 15)"
-```
-```cpp
-I = {12, 15}; // result = "(2 12)(3 27)(5 15)"
-```
-```c
-I = {12, 15}; // result = "(2 12)(3 27)(5 15)"
-```
-```csharp
-I = {12, 15}; // result = "(2 12)(3 27)(5 15)"
-```
-```clojure
-I = [12, 15] ; result = [[2, 12], [3, 27], [5, 15]]
-```
-```haskell
-I = [12, 15] -- result = [(2,12),(3,27),(5,15)]
-```
-```javascript
-I = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]
-```
-```coffeescript
-I = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]
-```
-```typescript
-I = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
 ```
 ```php
-I = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```ruby
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```javascript
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```typescript
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```coffeescript
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```clojure
+  sqInRect(5, 3) should return [3, 2, 1, 1]
+  sqInRect(3, 5) should return [3, 2, 1, 1]
+```
+```haskell
+squaresInRect  5  3 `shouldBe` Just [3,2,1,1]
+squaresInRect  3  5 `shouldBe` Just [3,2,1,1]
+squaresInRect 20 14 `shouldBe` Just [14, 6, 6, 2, 2, 2]
+```
+```fsharp
+squaresInRect  5  3 should return Some [3,2,1,1]
+squaresInRect  3  5 should return Some [3,2,1,1]
+squaresInRect 20 14 should return Some [14, 6, 6, 2, 2, 2]
+```
+```swift
+squaresInRect  5  3 should return [3,2,1,1] as optional
+squaresInRect  3  5 should return [3,2,1,1] as optional
+squaresInRect 20 14 should return [14, 6, 6, 2, 2, 2] as optional
+```
+```java
+  sqInRect(5, 3) should return a List<Integer> {3, 2, 1, 1}
+  sqInRect(3, 5) should return a List<Integer> {3, 2, 1, 1}
+```
+```csharp
+  sqInRect(5, 3) should return a List<int> {3, 2, 1, 1}
+  sqInRect(3, 5) should return a List<int> {3, 2, 1, 1}
+```
+```cpp
+  sqInRect(5, 3) should return {3, 2, 1, 1}
+  sqInRect(3, 5) should return {3, 2, 1, 1}
+```
+```c
+C returns a structure, see the "Solution" and "Examples" tabs.
+Your result and the reference test solution are compared by strings.
 ```
 
-[2, 3, 5] is the list of all prime factors of the elements of I, hence the result.
+#Note:
+lng == wdth as a starting case would be an entirely different problem and the drawing is planned to be interpreted with lng != wdth. See kata, [Square into Squares. Protect trees!](http://www.codewars.com/kata/54eb33e5bc1a25440d000891).
 
-**Notes:**
-It can happen that a sum is 0 if some numbers are negative!
+When the initial parameters are so that `lng` == `wdth`, the solution `[lng]` would be the most obvious but not in the spirit of this kata so, in that case, return `None`/`nil`/`null`/`Nothing. Return {} with C++`. Return the string `"nil"` with Bash.
 
-Example: I = [15, 30, -45]
-5 divides 15, 30 and (-45) so 5 appears in the result, the sum of the numbers for which 5 is a factor is 0 so we have [5, 0] in the result amongst others. 
+In that case the returned structure of **C** will have its `sz` component equal to `0`.
+(See the "Solution" and "Examples" tabs)
 
 
+```python
+  sqInRect(5, 5) should return None
+```
+```ruby
+  sqInRect(5, 5) should return nil
+```
+```crystal
+  sqInRect(5, 5) should return nil
+```
+```elixir
+  sqInRect(5, 5) should return nil
+```
+```javascript
+  sqInRect(5, 5) should return null
+```
+```php
+  sqInRect(5, 5) should return null
+```
+```typescript
+  sqInRect(5, 5) should return null
+```
+```coffeescript
+  sqInRect(5, 5) should return null
+```
+```clojure
+  sqInRect(5, 5) should return nil
+```
+```java
+  sqInRect(5, 5) should return null
+```
+```csharp
+  sqInRect(5, 5) should return null
+```
+```cpp
+  sqInRect(5, 5) should return {}
+```
+```haskell
+squaresInRect 5 5 `shouldBe` Nothing
+```
+```fsharp
+squaresInRect 5 5 should return None
+```
+```swift
+squaresInRect 5 5 should return nil
+```

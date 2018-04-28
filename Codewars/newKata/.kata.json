@@ -1,23 +1,68 @@
 {
-  "success": true,
-  "name": "Sum by Factors",
-  "slug": "sum-by-factors",
-  "href": "/kata/sum-by-factors",
-  "description": "Given an array of positive or negative integers \n\n<code> I= [i<sub>1</sub>,..,i<sub>n</sub>]</code>\n\nyou have to produce a sorted array P of the form \n\n<code>[ [p, sum of all i<sub>j</sub> of I for which p is a prime factor (p positive) of i<sub>j</sub>] ...]</code>\n\nP will be sorted by increasing order of the prime numbers.\nThe final result has to be given as a string in Java, C#, C, C++ and as an array of arrays in other languages.\n\nExample:\n\n\n```python\nI = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]\n```\n```elixir\nI = [12, 15] # result = [{2, 12}, {3, 27}, {5, 15}]\n```\n```rust\nI = [12, 15] # result = [(2, 12), (3, 27), (5, 15)]\n```\n```swift\nI = [12, 15] # result = [(2, 12), (3, 27), (5, 15)]\n```\n```ruby\nI = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]\n```\n```java\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```cpp\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```c\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```csharp\nI = {12, 15}; // result = \"(2 12)(3 27)(5 15)\"\n```\n```clojure\nI = [12, 15] ; result = [[2, 12], [3, 27], [5, 15]]\n```\n```haskell\nI = [12, 15] -- result = [(2,12),(3,27),(5,15)]\n```\n```javascript\nI = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]\n```\n```coffeescript\nI = [12, 15] # result = [[2, 12], [3, 27], [5, 15]]\n```\n```typescript\nI = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]\n```\n```php\nI = [12, 15]; //result = [[2, 12], [3, 27], [5, 15]]\n```\n\n[2, 3, 5] is the list of all prime factors of the elements of I, hence the result.\n\n**Notes:**\nIt can happen that a sum is 0 if some numbers are negative!\n\nExample: I = [15, 30, -45]\n5 divides 15, 30 and (-45) so 5 appears in the result, the sum of the numbers for which 5 is a factor is 0 so we have [5, 0] in the result amongst others. \n\n\n",
-  "author": "Michael Salaverry",
-  "rank": -4,
-  "averageCompletion": null,
-  "tags": [
-    "Algorithms",
-    "Numbers",
-    "Data Types",
-    "Arrays"
+  "id": "55466989aeecab5aac00003e",
+  "name": "Rectangle into Squares",
+  "slug": "rectangle-into-squares",
+  "category": "games",
+  "publishedAt": "2015-05-03T18:33:29Z",
+  "approvedAt": "2015-05-08T16:44:33Z",
+  "languages": [
+    "python",
+    "ruby",
+    "java",
+    "csharp",
+    "clojure",
+    "javascript",
+    "haskell",
+    "coffeescript",
+    "cpp",
+    "elixir",
+    "typescript",
+    "php",
+    "crystal",
+    "fsharp",
+    "c",
+    "rust",
+    "swift",
+    "r",
+    "shell",
+    "ocaml"
   ],
+  "url": "https://www.codewars.com/kata/rectangle-into-squares",
+  "rank": {
+    "id": -6,
+    "name": "6 kyu",
+    "color": "yellow"
+  },
+  "createdAt": "2015-05-03T18:31:41Z",
+  "createdBy": {
+    "username": "g964",
+    "url": "https://www.codewars.com/users/g964"
+  },
+  "approvedBy": {
+    "username": "GiacomoSorbi",
+    "url": "https://www.codewars.com/users/GiacomoSorbi"
+  },
+  "description": "The drawing below gives an idea of how to cut a given \"true\" rectangle into squares (\"true\" rectangle meaning that the two dimensions are different).\n\n![alternative text](http://i.imgur.com/lk5vJ7sm.jpg)\n\nCan you translate this drawing into an algorithm?\n\nYou will be given two dimensions \n\n1. a positive integer length (parameter named `lng`)\n2. a positive integer width (parameter named `wdth`)\n\nYou will return an array with the size of each of the  squares.\n\nShell bash returns a string.\n\n\n```python\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```crystal\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```elixir\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```php\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```ruby\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```javascript\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```typescript\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```coffeescript\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```clojure\n  sqInRect(5, 3) should return [3, 2, 1, 1]\n  sqInRect(3, 5) should return [3, 2, 1, 1]\n```\n```haskell\nsquaresInRect  5  3 `shouldBe` Just [3,2,1,1]\nsquaresInRect  3  5 `shouldBe` Just [3,2,1,1]\nsquaresInRect 20 14 `shouldBe` Just [14, 6, 6, 2, 2, 2]\n```\n```fsharp\nsquaresInRect  5  3 should return Some [3,2,1,1]\nsquaresInRect  3  5 should return Some [3,2,1,1]\nsquaresInRect 20 14 should return Some [14, 6, 6, 2, 2, 2]\n```\n```swift\nsquaresInRect  5  3 should return [3,2,1,1] as optional\nsquaresInRect  3  5 should return [3,2,1,1] as optional\nsquaresInRect 20 14 should return [14, 6, 6, 2, 2, 2] as optional\n```\n```java\n  sqInRect(5, 3) should return a List<Integer> {3, 2, 1, 1}\n  sqInRect(3, 5) should return a List<Integer> {3, 2, 1, 1}\n```\n```csharp\n  sqInRect(5, 3) should return a List<int> {3, 2, 1, 1}\n  sqInRect(3, 5) should return a List<int> {3, 2, 1, 1}\n```\n```cpp\n  sqInRect(5, 3) should return {3, 2, 1, 1}\n  sqInRect(3, 5) should return {3, 2, 1, 1}\n```\n```c\nC returns a structure, see the \"Solution\" and \"Examples\" tabs.\nYour result and the reference test solution are compared by strings.\n```\n\n#Note:\nlng == wdth as a starting case would be an entirely different problem and the drawing is planned to be interpreted with lng != wdth. See kata, [Square into Squares. Protect trees!](http://www.codewars.com/kata/54eb33e5bc1a25440d000891).\n\nWhen the initial parameters are so that `lng` == `wdth`, the solution `[lng]` would be the most obvious but not in the spirit of this kata so, in that case, return `None`/`nil`/`null`/`Nothing. Return {} with C++`. Return the string `\"nil\"` with Bash.\n\nIn that case the returned structure of **C** will have its `sz` component equal to `0`.\n(See the \"Solution\" and \"Examples\" tabs)\n\n\n```python\n  sqInRect(5, 5) should return None\n```\n```ruby\n  sqInRect(5, 5) should return nil\n```\n```crystal\n  sqInRect(5, 5) should return nil\n```\n```elixir\n  sqInRect(5, 5) should return nil\n```\n```javascript\n  sqInRect(5, 5) should return null\n```\n```php\n  sqInRect(5, 5) should return null\n```\n```typescript\n  sqInRect(5, 5) should return null\n```\n```coffeescript\n  sqInRect(5, 5) should return null\n```\n```clojure\n  sqInRect(5, 5) should return nil\n```\n```java\n  sqInRect(5, 5) should return null\n```\n```csharp\n  sqInRect(5, 5) should return null\n```\n```cpp\n  sqInRect(5, 5) should return {}\n```\n```haskell\nsquaresInRect 5 5 `shouldBe` Nothing\n```\n```fsharp\nsquaresInRect 5 5 should return None\n```\n```swift\nsquaresInRect 5 5 should return nil\n```",
+  "totalAttempts": 38058,
+  "totalCompleted": 6416,
+  "totalStars": 349,
+  "voteScore": 796,
+  "tags": [
+    "Puzzles",
+    "Fundamentals",
+    "Geometry",
+    "Algebra",
+    "Mathematics",
+    "Algorithms",
+    "Logic"
+  ],
+  "contributorsWanted": true,
+  "unresolved": {
+    "issues": 0,
+    "suggestions": 3
+  },
   "session": {
-    "projectId": "5ae4617fd2ee27675e00001f",
-    "solutionId": "5ae46180d2ee27675e000021",
-    "setup": "function sumOfDivided(lst) {\n  //your code\n  return [[2, 12]];\n}\n ",
-    "exampleFixture": "Test.assertSimilar(sumOfDivided([12, 15]), [ [2, 12], [3, 27], [5, 15] ]);\nTest.assertSimilar(sumOfDivided([15,21,24,30,45]), [ [2, 54], [3, 135], [5, 90], [7, 21] ]);",
-    "code": null
+    "setup": "",
+    "exampleFixture": ""
   }
 }
