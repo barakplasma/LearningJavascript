@@ -1,0 +1,52 @@
+{
+  "id": "52b7ed099cdc285c300001cd",
+  "name": "Sum of Intervals",
+  "slug": "sum-of-intervals",
+  "category": "algorithms",
+  "publishedAt": "2013-12-23T11:12:52Z",
+  "approvedAt": "2013-12-26T01:51:39Z",
+  "languages": [
+    "javascript",
+    "coffeescript",
+    "php"
+  ],
+  "url": "https://www.codewars.com/kata/sum-of-intervals",
+  "rank": {
+    "id": -4,
+    "name": "4 kyu",
+    "color": "blue"
+  },
+  "createdAt": "2013-12-23T07:58:01Z",
+  "createdBy": {
+    "username": "xDranik",
+    "url": "https://www.codewars.com/users/xDranik"
+  },
+  "approvedBy": {
+    "username": "jhoffner",
+    "url": "https://www.codewars.com/users/jhoffner"
+  },
+  "description": "Write a function called `sumIntervals`/`sum_intervals()` that accepts an array of intervals, and returns the sum of all the interval lengths. Overlapping intervals should only be counted once.\n\n#### Intervals\n\nIntervals are represented by a pair of integers in the form of an array.  The first value of the interval will always be less than  the second value. Interval example:  `[1, 5]` is an interval from 1 to 5. The length of this interval is 4.\n\n#### Overlapping Intervals\n\nList containing overlapping intervals:<br/>\n\n```\n[\n   [1,4],\n   [7, 10],\n   [3, 5]\n]\n```\n\nThe sum of the lengths of these intervals is 7. Since [1, 4] and [3, 5] overlap, we can treat the interval as [1, 5], which has a length of 4.\n\n### Examples\n\n```\nsumIntervals( [\n   [1,2],\n   [6, 10],\n   [11, 15]\n] ); // => 9\n\nsumIntervals( [\n   [1,4],\n   [7, 10],\n   [3, 5]\n] ); // => 7\n\nsumIntervals( [\n   [1,5],\n   [10, 20],\n   [1, 6],\n   [16, 19],\n   [5, 11]\n] ); // => 19\n```",
+  "totalAttempts": 12376,
+  "totalCompleted": 1774,
+  "totalStars": 112,
+  "voteScore": 174,
+  "tags": [
+    "Algorithms",
+    "Logic",
+    "Aggregations",
+    "Arithmetic",
+    "Mathematics",
+    "Numbers",
+    "Data Types",
+    "Integers"
+  ],
+  "contributorsWanted": true,
+  "unresolved": {
+    "issues": 0,
+    "suggestions": 2
+  },
+  "session": {
+    "setup": "",
+    "exampleFixture": ""
+  }
+}
